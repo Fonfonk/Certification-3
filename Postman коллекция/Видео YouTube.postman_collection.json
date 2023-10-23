@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "0b01adaa-8f24-4f1c-bdc0-1271ccd1dfb2",
+		"name": "Видео YouTube",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25490335",
+		"_collection_link": "https://restless-rocket-378608.postman.co/workspace/%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-3~ffe40790-f5a4-4869-9ec3-1f7448f17b14/collection/25490335-0b01adaa-8f24-4f1c-bdc0-1271ccd1dfb2?action=share&source=collection_link&creator=25490335"
+	},
+	"item": [
+		{
+			"name": "Список видео по id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.googleapis.com/youtube/v3/videos?id=jifUJrYPZQQ&part=snippet,liveStreamingDetails,contentDetails,statistics&key={{API_KEY}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"youtube",
+						"v3",
+						"videos"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "jifUJrYPZQQ"
+						},
+						{
+							"key": "part",
+							"value": "snippet,liveStreamingDetails,contentDetails,statistics"
+						},
+						{
+							"key": "key",
+							"value": "{{API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Поставить like по id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "scope",
+							"value": "https://www.googleapis.com/auth/youtube",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientSecret",
+							"value": "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",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://oauth2.googleapis.com/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://accounts.google.com/o/oauth2/v2/auth",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "841020613370-h5dnba7oqiqj80qgc8qq84bs5he6t4qo.apps.googleusercontent.com",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://youtube.googleapis.com/youtube/v3/videos/rate?id=jifUJrYPZQQ&rating=like&key={{API_KEY}}",
+					"protocol": "https",
+					"host": [
+						"youtube",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"youtube",
+						"v3",
+						"videos",
+						"rate"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "jifUJrYPZQQ"
+						},
+						{
+							"key": "rating",
+							"value": "like"
+						},
+						{
+							"key": "key",
+							"value": "{{API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Популярные видео",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&key={{API_KEY}}",
+					"protocol": "https",
+					"host": [
+						"youtube",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"youtube",
+						"v3",
+						"videos"
+					],
+					"query": [
+						{
+							"key": "chart",
+							"value": "mostPopular"
+						},
+						{
+							"key": "key",
+							"value": "{{API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Популярные видео негатив тест",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&key",
+					"protocol": "https",
+					"host": [
+						"youtube",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"youtube",
+						"v3",
+						"videos"
+					],
+					"query": [
+						{
+							"key": "chart",
+							"value": "mostPopular"
+						},
+						{
+							"key": "key",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_KEY",
+			"value": "AIzaSyCcRNA8NQUd6lCEsBvMBAcXIMSZuv9TksY",
+			"type": "string"
+		}
+	]
+}
